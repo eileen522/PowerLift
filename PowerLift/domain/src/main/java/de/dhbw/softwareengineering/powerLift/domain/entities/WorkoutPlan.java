@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class WorkoutPlan {
 	@Id
 	@Column(name = "id")
-    private String id;
+    private UUID id;
 	
 	@Column
 	private String name;
@@ -26,7 +26,7 @@ public class WorkoutPlan {
     private List<Workout> workouts;
     
     public WorkoutPlan(String name, String description, List<Workout> workouts) {
-    	this.id = UUID.randomUUID().toString();
+    	this.id = UUID.randomUUID();
     	this.name = name;
     	this.description = description;
     	this.workouts = workouts;
@@ -35,7 +35,7 @@ public class WorkoutPlan {
     protected WorkoutPlan() {
     }
     
-    public String getId() {
+    public UUID getId() {
         return id;
     }
     

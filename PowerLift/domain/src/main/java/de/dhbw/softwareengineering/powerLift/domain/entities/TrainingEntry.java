@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 public class TrainingEntry {
     @Id
     @Column(name = "id")
-    private String id;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -30,7 +30,7 @@ public class TrainingEntry {
     private List<ExerciseEntry> exerciseEntries;
 
     public TrainingEntry(User user, Date date, List<ExerciseEntry> exerciseEntries) {
-    	this.id = UUID.randomUUID().toString();
+    	this.id = UUID.randomUUID();
         this.user = user;
         this.date = date;
         this.exerciseEntries = exerciseEntries;
@@ -39,7 +39,7 @@ public class TrainingEntry {
     protected TrainingEntry() {
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

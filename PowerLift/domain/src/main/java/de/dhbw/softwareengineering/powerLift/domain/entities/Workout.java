@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 public class Workout {
     @Id
     @Column(name = "id")
-    private String id;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -26,12 +26,8 @@ public class Workout {
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL)
     private List<TrainingSet> trainingSets;
     
-    @ManyToOne
-    @JoinColumn(name = "workout_plan_id")
-    private WorkoutPlan workoutPlan;
-    
     public Workout(User user, List<TrainingSet> trainingSets) {
-    	this.id = UUID.randomUUID().toString();
+    	this.id = UUID.randomUUID();
     	this.user = user;
     	this.trainingSets = trainingSets;
     }
@@ -40,7 +36,7 @@ public class Workout {
     	
     }
     
-    public String getId() {
+    public UUID getId() {
         return id;
     }
     
@@ -50,10 +46,6 @@ public class Workout {
     
     public List<TrainingSet> getTrainingSets() {
     	return trainingSets;
-    }
-    
-    public WorkoutPlan getWorkoutPlan() {
-    	return workoutPlan;
     }
  
 }

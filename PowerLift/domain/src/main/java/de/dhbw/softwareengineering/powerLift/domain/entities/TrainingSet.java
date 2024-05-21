@@ -14,11 +14,7 @@ import jakarta.persistence.Table;
 public class TrainingSet {
     @Id
     @Column(name = "id")
-    private String id;
-
-    @ManyToOne
-    @JoinColumn(name = "workout_id")
-    private Workout workout;
+    private UUID id;
 
     @Column
     private Integer sets;
@@ -29,9 +25,8 @@ public class TrainingSet {
     @Column
     private Integer rpe;
 
-    public TrainingSet(Workout workout, Integer sets, Integer reps, Integer rpe) {
-    	this.id = UUID.randomUUID().toString();
-        this.workout = workout;
+    public TrainingSet(Integer sets, Integer reps, Integer rpe) {
+    	this.id = UUID.randomUUID();
         this.sets = sets;
         this.reps = reps;
         this.rpe = rpe;
@@ -40,12 +35,8 @@ public class TrainingSet {
     protected TrainingSet() {
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
-    }
-    
-    public Workout getWorkout() {
-    	return workout;
     }
 
     public Integer getSets() {
