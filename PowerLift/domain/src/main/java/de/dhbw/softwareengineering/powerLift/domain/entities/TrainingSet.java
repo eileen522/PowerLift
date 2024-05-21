@@ -1,7 +1,6 @@
 package de.dhbw.softwareengineering.powerLift.domain.entities;
 
 import java.util.UUID;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,17 +15,23 @@ public class TrainingSet {
     @Column(name = "id")
     private UUID id;
 
+    @ManyToOne
+    @JoinColumn(name = "exercise_id", nullable = false)
+    private Exercise exercise;
+
     @Column
     private Integer sets;
 
+    //TODO: ValueObject with weight
     @Column
     private Integer reps;
-    
-    @Column
-    private Integer rpe;
 
-    public TrainingSet(Integer sets, Integer reps, Integer rpe) {
-    	this.id = UUID.randomUUID();
+    @Column
+    private double rpe;
+
+    public TrainingSet(Exercise exercise, Integer sets, Integer reps, double rpe) {
+        this.id = UUID.randomUUID();
+        this.exercise = exercise;
         this.sets = sets;
         this.reps = reps;
         this.rpe = rpe;
@@ -39,6 +44,10 @@ public class TrainingSet {
         return id;
     }
 
+    public Exercise getExercise() {
+        return exercise;
+    }
+
     public Integer getSets() {
         return sets;
     }
@@ -46,8 +55,24 @@ public class TrainingSet {
     public Integer getReps() {
         return reps;
     }
-    
-    public Integer getRpe() {
+
+    public double getRpe() {
         return rpe;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
+    }
+
+    public void setSets(Integer sets) {
+        this.sets = sets;
+    }
+
+    public void setReps(Integer reps) {
+        this.reps = reps;
+    }
+
+    public void setRpe(double rpe) {
+        this.rpe = rpe;
     }
 }

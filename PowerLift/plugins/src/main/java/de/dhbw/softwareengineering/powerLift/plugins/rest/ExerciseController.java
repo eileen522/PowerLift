@@ -26,7 +26,7 @@ public class ExerciseController {
     	return exercise.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/byName/{name}")
     public ResponseEntity<Exercise> getExerciseByName(@PathVariable String name) {
     	Optional<Exercise> exercise = exerciseService.getExerciseByName(name);
     	return exercise.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());

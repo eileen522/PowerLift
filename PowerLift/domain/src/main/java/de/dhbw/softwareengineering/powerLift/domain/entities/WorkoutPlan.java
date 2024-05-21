@@ -1,16 +1,15 @@
 package de.dhbw.softwareengineering.powerLift.domain.entities;
 
-import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+
 @Entity
-@Table(name = "workout_plan")
+@Table(name = "workout_plans")
 public class WorkoutPlan {
 	@Id
 	@Column(name = "id")
@@ -22,14 +21,14 @@ public class WorkoutPlan {
     @Column
     private String description;
 	
-    @OneToMany(mappedBy = "workoutPlan")
-    private List<Workout> workouts;
+    //@OneToMany(mappedBy = "workoutPlan")
+    //private List<Workout> workouts;
     
-    public WorkoutPlan(String name, String description, List<Workout> workouts) {
+    public WorkoutPlan(String name, String description /*, List<Workout> workouts*/) {
     	this.id = UUID.randomUUID();
     	this.name = name;
     	this.description = description;
-    	this.workouts = workouts;
+    	//this.workouts = workouts;
     }
     
     protected WorkoutPlan() {
@@ -47,8 +46,8 @@ public class WorkoutPlan {
     	return description;
     }
     
-    public List<Workout> getWorkouts() {
+    /*public List<Workout> getWorkouts() {
         return workouts;
-    }
+    }*/
 
 }
