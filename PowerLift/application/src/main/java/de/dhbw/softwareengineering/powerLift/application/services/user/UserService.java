@@ -40,13 +40,7 @@ public class UserService {
     }
 
     public void create(User user) throws UserAlreadyExistsException {
-        if (userRepository.getUserByUsername(user.getUsername()).isPresent()) {
-            throw new UserAlreadyExistsException("Username already exists");
-        }
-
-        if (userRepository.getUserByEmail(user.getEmail()).isPresent()) {
-            throw new UserAlreadyExistsException("Email already exists");
-        }
+        validateUserUniqueness(user.getUsername(), user.getEmail(), null);
 
         User newUser = new User.Builder()
                 .withUsername(user.getUsername())
@@ -56,19 +50,12 @@ public class UserService {
 
         userRepository.createUser(newUser);
     }
-    
+
     public void updateUser(UUID id, String newUsername, String newEmail, String newPassword) throws UserAlreadyExistsException {
         Optional<User> existingUser = userRepository.getUserById(id);
+
         if (existingUser.isPresent()) {
-            User user = existingUser.get();
-
-            if (!user.getUsername().equals(newUsername) && userRepository.getUserByUsername(newUsername).isPresent()) {
-                throw new UserAlreadyExistsException("Username already exists");
-            }
-
-            if (!user.getEmail().equals(newEmail) && userRepository.getUserByEmail(newEmail).isPresent()) {
-                throw new UserAlreadyExistsException("Email already exists");
-            }
+            validateUserUniqueness(newUsername, newEmail, id);
 
             User updatedUser = new User.Builder()
                     .withUsername(newUsername)
@@ -79,6 +66,18 @@ public class UserService {
             userRepository.updateUser(updatedUser);
         } else {
             throw new IllegalArgumentException("User not found");
+        }
+    }
+    
+    private void validateUserUniqueness(String username, String email, UUID userId) throws UserAlreadyExistsException {
+        if (userRepository.getUserByUsername(username).isPresent() &&
+                (userId == null || !userRepository.getUserByUsername(username).get().getId().equals(userId))) {
+            throw new UserAlreadyExistsException("Username already exists");
+        }
+
+        if (userRepository.getUserByEmail(email).isPresent() &&
+                (userId == null || !userRepository.getUserByEmail(email).get().getId().equals(userId))) {
+            throw new UserAlreadyExistsException("Email already exists");
         }
     }
 
