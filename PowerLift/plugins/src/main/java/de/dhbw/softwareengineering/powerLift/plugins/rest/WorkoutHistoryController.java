@@ -36,14 +36,8 @@ public class WorkoutHistoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<WorkoutHistory> getWorkoutHistoryById(@PathVariable UUID id) {
-        Optional<WorkoutHistory> workoutHistory = workoutHistoryService.findByWorkoutId(id);
+        Optional<WorkoutHistory> workoutHistory = workoutHistoryService.findByWorkoutHistoryId(id);
         return workoutHistory.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/workout/{workoutId}")
-    public ResponseEntity<WorkoutHistory> getWorkoutHistoryByWorkoutId(@PathVariable UUID workoutId) {
-        Optional<WorkoutHistory> workoutHistories = workoutHistoryService.findByWorkoutId(workoutId);
-        return workoutHistories.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/date/{date}")

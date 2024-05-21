@@ -9,7 +9,7 @@ import de.dhbw.softwareengineering.powerLift.domain.entities.WorkoutHistory;
 
 public interface WorkoutHistoryRepository {
 	
-	Optional<WorkoutHistory> findByWorkoutId(UUID workoutId);
+	Optional<WorkoutHistory> findByWorkoutHistoryId(UUID workoutHistoryId);
     Optional<WorkoutHistory> findByDate(LocalDate date);
     List<WorkoutHistory> findByUserId(UUID userId);
     List<WorkoutHistory> getAllWorkoutHistorys();

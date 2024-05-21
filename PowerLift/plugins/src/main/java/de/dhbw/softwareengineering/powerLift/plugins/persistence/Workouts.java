@@ -28,7 +28,7 @@ public class Workouts implements WorkoutRepository {
 
 	@Override
 	public List<Workout> findByUserId(UUID userId) {
-		return springDataForWorkouts.findByUserId(userId);
+		return springDataForWorkouts.findByUser_Id(userId);
 	}
 
 	@Override

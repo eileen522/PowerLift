@@ -17,8 +17,8 @@ public class WorkoutHistoryService {
 	@Autowired
 	private WorkoutHistoryRepository workoutHistoryRepository;
 	
-	public Optional<WorkoutHistory> findByWorkoutId(UUID workoutId) {
-		return workoutHistoryRepository.findByWorkoutId(workoutId);
+	public Optional<WorkoutHistory> findByWorkoutHistoryId(UUID workoutHistoryId) {
+		return workoutHistoryRepository.findByWorkoutHistoryId(workoutHistoryId);
 	}
 	public Optional<WorkoutHistory> findByDate(LocalDate date) {
 		return workoutHistoryRepository.findByDate(date);

@@ -18,8 +18,8 @@ public class WorkoutHistorys implements WorkoutHistoryRepository {
 	SpringDataForWorkoutHistory springDataForWorkoutHistory;
 
 	@Override
-	public Optional<WorkoutHistory> findByWorkoutId(UUID workoutId) {
-		return springDataForWorkoutHistory.findByWorkoutId(workoutId);
+	public Optional<WorkoutHistory> findByWorkoutHistoryId(UUID workoutHistoryId) {
+		return springDataForWorkoutHistory.findById(workoutHistoryId);
 	}
 
 	@Override

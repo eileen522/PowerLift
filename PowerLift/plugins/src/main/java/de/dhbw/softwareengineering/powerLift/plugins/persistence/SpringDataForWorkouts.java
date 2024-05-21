@@ -11,6 +11,6 @@ import de.dhbw.softwareengineering.powerLift.domain.entities.Workout;
 public interface SpringDataForWorkouts extends JpaRepository<Workout, UUID> {
 	
 	Optional<Workout> findByName(String name);
-	List<Workout> findByUserId(UUID userId);
+	List<Workout> findByUser_Id(UUID userId);
 
 }
