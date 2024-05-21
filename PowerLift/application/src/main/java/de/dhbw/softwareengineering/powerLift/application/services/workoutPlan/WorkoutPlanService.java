@@ -38,43 +38,41 @@ public class WorkoutPlanService {
 	public List<WorkoutPlan> getAllWorkoutPlans() {
 		return workoutPlanRepository.getAllWorkoutPlans();
 	}
+	
 	public void createWorkoutPlan(WorkoutPlan workoutPlan) throws WorkoutPlanAlreadyExistsException {
-		
-		if (workoutPlanRepository.getWorkoutPlanByName(workoutPlan.getName()).isPresent()) {
-    		throw new WorkoutPlanAlreadyExistsException("A Workout with this name already exists");
-    	}
-		
-		WorkoutPlan newWorkoutPlan = new WorkoutPlan(workoutPlan.getName(), workoutPlan.getDescription(), workoutPlan.getUser(), workoutPlan.getWorkouts());
-    	
-    	workoutPlanRepository.createWorkoutPlan(newWorkoutPlan);
-		
-	}
-	public void updateWorkoutPlan(UUID id, String name, String description, User user, List<Workout> workouts) throws WorkoutPlanAlreadyExistsException {
-		
-		Optional<WorkoutPlan> existingWorkoutPlan = workoutPlanRepository.getWorkoutPlanById(id);
+        validateWorkoutPlanUniqueness(workoutPlan.getName(), null);
+
+        WorkoutPlan newWorkoutPlan = new WorkoutPlan(workoutPlan.getName(), workoutPlan.getDescription(), workoutPlan.getUser(), workoutPlan.getWorkouts());
+        workoutPlanRepository.createWorkoutPlan(newWorkoutPlan);
+    }
+
+    public void updateWorkoutPlan(UUID id, String name, String description, User user, List<Workout> workouts) throws WorkoutPlanAlreadyExistsException {
+        Optional<WorkoutPlan> existingWorkoutPlan = workoutPlanRepository.getWorkoutPlanById(id);
 
         if (existingWorkoutPlan.isPresent()) {
-            Optional<WorkoutPlan> workoutWithSameName = workoutPlanRepository.getWorkoutPlanByName(name);
-            
-            if (workoutWithSameName.isPresent() && !workoutWithSameName.get().getId().equals(id)) {
-                throw new WorkoutPlanAlreadyExistsException("A WorkoutPlan with this name already exists");
-            }
-            
+            validateWorkoutPlanUniqueness(name, id);
+
             WorkoutPlan updatedWorkoutPlan = existingWorkoutPlan.get();
             updatedWorkoutPlan.setName(name);
-            updatedWorkoutPlan.setDescription(description);	
+            updatedWorkoutPlan.setDescription(description);
             updatedWorkoutPlan.setUser(user);
             updatedWorkoutPlan.setWorkouts(workouts);
             workoutPlanRepository.updateWorkoutPlan(updatedWorkoutPlan);
         } else {
             throw new IllegalArgumentException("Workout not found");
         }
-	}
+    }
+	
+	private void validateWorkoutPlanUniqueness(String name, UUID id) throws WorkoutPlanAlreadyExistsException {
+        Optional<WorkoutPlan> workoutWithSameName = workoutPlanRepository.getWorkoutPlanByName(name);
+        if (workoutWithSameName.isPresent() && (id == null || !workoutWithSameName.get().getId().equals(id))) {
+            throw new WorkoutPlanAlreadyExistsException("A WorkoutPlan with this name already exists");
+        }
+    }
 	
 	public void deleteWorkoutPlan(UUID id) {
 		workoutPlanRepository.deleteWorkoutPlan(id);
     	eventPublisher.publishEvent(new WorkoutPlanDeletedEvent(this, id));
 	}
-	
 
 }
