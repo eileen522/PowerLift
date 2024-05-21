@@ -9,6 +9,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,11 +27,15 @@ public class WorkoutPlan {
 	
     @Column
     private String description;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 	
     @OneToMany(cascade = CascadeType.ALL)
     private List<Workout> workouts;
     
-    public WorkoutPlan(String name, String description, List<Workout> workouts) {
+    public WorkoutPlan(String name, String description, User user, List<Workout> workouts) {
     	this.id = UUID.randomUUID();
     	this.name = name;
     	this.description = description;
@@ -71,6 +77,14 @@ public class WorkoutPlan {
     
     public void setWorkouts(List<Workout> workouts) {
         this.workouts = workouts;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public User getUser() {
+        return user;
     }
     
 }

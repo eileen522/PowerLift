@@ -65,7 +65,7 @@ public class WorkoutPlanController {
     public ResponseEntity<String> updateWorkoutPlan(@PathVariable UUID id, @RequestBody WorkoutPlan updatedWorkoutPlan) throws WorkoutPlanAlreadyExistsException {
     	
     	try {
-    		workoutPlanService.updateWorkoutPlan(id, updatedWorkoutPlan.getName(), updatedWorkoutPlan.getDescription(), updatedWorkoutPlan.getWorkouts());
+    		workoutPlanService.updateWorkoutPlan(id, updatedWorkoutPlan.getName(), updatedWorkoutPlan.getDescription(),  updatedWorkoutPlan.getUser(), updatedWorkoutPlan.getWorkouts());
             return ResponseEntity.ok("WorkoutPlan updated successfully");
         } catch (WorkoutPlanAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());

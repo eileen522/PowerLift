@@ -31,7 +31,7 @@ public class WorkoutHistoryService {
 	}
 	public void createWorkoutHistory(WorkoutHistory workoutHistory) {
 		
-		WorkoutHistory newWorkoutHistory = new WorkoutHistory(workoutHistory.getWorkout(), workoutHistory.getDate());
+		WorkoutHistory newWorkoutHistory = new WorkoutHistory(workoutHistory.getWorkout(), workoutHistory.getUser(), workoutHistory.getDate());
 		workoutHistoryRepository.createWorkoutHistory(newWorkoutHistory);
 	}
 

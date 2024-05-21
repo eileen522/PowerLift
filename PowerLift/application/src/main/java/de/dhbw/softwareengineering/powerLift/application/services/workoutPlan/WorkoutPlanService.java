@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 import de.dhbw.softwareengineering.powerLift.domain.entities.Workout;
 import de.dhbw.softwareengineering.powerLift.domain.entities.WorkoutPlan;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.WorkoutPlanRepository;
@@ -43,12 +44,12 @@ public class WorkoutPlanService {
     		throw new WorkoutPlanAlreadyExistsException("A Workout with this name already exists");
     	}
 		
-		WorkoutPlan newWorkoutPlan = new WorkoutPlan(workoutPlan.getName(), workoutPlan.getDescription(), workoutPlan.getWorkouts());
+		WorkoutPlan newWorkoutPlan = new WorkoutPlan(workoutPlan.getName(), workoutPlan.getDescription(), workoutPlan.getUser(), workoutPlan.getWorkouts());
     	
     	workoutPlanRepository.createWorkoutPlan(newWorkoutPlan);
 		
 	}
-	public void updateWorkoutPlan(UUID id, String name, String description, List<Workout> workouts) throws WorkoutPlanAlreadyExistsException {
+	public void updateWorkoutPlan(UUID id, String name, String description, User user, List<Workout> workouts) throws WorkoutPlanAlreadyExistsException {
 		
 		Optional<WorkoutPlan> existingWorkoutPlan = workoutPlanRepository.getWorkoutPlanById(id);
 
@@ -62,6 +63,7 @@ public class WorkoutPlanService {
             WorkoutPlan updatedWorkoutPlan = existingWorkoutPlan.get();
             updatedWorkoutPlan.setName(name);
             updatedWorkoutPlan.setDescription(description);	
+            updatedWorkoutPlan.setUser(user);
             updatedWorkoutPlan.setWorkouts(workouts);
             workoutPlanRepository.updateWorkoutPlan(updatedWorkoutPlan);
         } else {

@@ -7,6 +7,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -18,7 +19,12 @@ public class WorkoutHistory {
     private UUID id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "workout_id", nullable = false)
     private Workout workout;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
@@ -26,9 +32,10 @@ public class WorkoutHistory {
     protected WorkoutHistory() {
     }
 
-    public WorkoutHistory(Workout workout, LocalDate date) {
+    public WorkoutHistory(Workout workout, User user, LocalDate date) {
         this.id = UUID.randomUUID();
         this.workout = workout;
+        this.user = user;
         this.date = date;
     }
 
@@ -39,6 +46,10 @@ public class WorkoutHistory {
     public Workout getWorkout() {
         return workout;
     }
+    
+    public User getUser() {
+        return user;
+    }
 
     public void setWorkout(Workout workout) {
         this.workout = workout;
@@ -46,6 +57,10 @@ public class WorkoutHistory {
 
     public LocalDate getDate() {
         return date;
+    }
+    
+    public void setUser(User user) {
+    	this.user = user;
     }
 
     public void setDate(LocalDate date) {

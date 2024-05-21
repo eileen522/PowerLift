@@ -29,7 +29,7 @@ public class WorkoutHistoryController {
 	@PostMapping
     public ResponseEntity<String> addWorkoutToHistory(@RequestParam Workout workout, @RequestParam String date) {
         LocalDate workoutDate = LocalDate.parse(date);
-        WorkoutHistory workoutHistory = new WorkoutHistory(workout, workoutDate);
+        WorkoutHistory workoutHistory = new WorkoutHistory(workout, workout.getUser(), workoutDate);
         workoutHistoryService.createWorkoutHistory(workoutHistory);
         return ResponseEntity.status(HttpStatus.CREATED).body("Workout added to history");
     }
