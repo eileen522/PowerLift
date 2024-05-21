@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.UserRepository;
 
 

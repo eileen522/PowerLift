@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 
 public interface SpringDataForUsers extends JpaRepository<User, UUID> {
 	

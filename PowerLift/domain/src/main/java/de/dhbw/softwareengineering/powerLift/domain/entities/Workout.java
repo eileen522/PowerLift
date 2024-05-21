@@ -3,7 +3,6 @@ package de.dhbw.softwareengineering.powerLift.domain.entities;
 import java.util.List;
 import java.util.UUID;
 
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

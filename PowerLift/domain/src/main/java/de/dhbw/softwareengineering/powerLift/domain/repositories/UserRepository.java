@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 
 public interface UserRepository {
 	

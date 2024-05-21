@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Exercise {
     @Id
     @Column(name = "id")
-    private String id;
+    private UUID id;
 
     @Column
     private String name;
@@ -24,7 +24,7 @@ public class Exercise {
     private String category;
     
     public Exercise(String name, String description, String category) {
-    	this.id = UUID.randomUUID().toString();
+    	this.id = UUID.randomUUID();
     	this.name = name;
         this.description = description;
         this.category = category;
@@ -33,7 +33,7 @@ public class Exercise {
     protected Exercise() {
     }
     
-    public String getId() {
+    public UUID getId() {
         return id;
     }
     

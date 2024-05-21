@@ -1,4 +1,4 @@
-package de.dhbw.softwareengineering.powerLift.domain.entities.user;
+package de.dhbw.softwareengineering.powerLift.domain.entities;
 
 import java.util.UUID;
 

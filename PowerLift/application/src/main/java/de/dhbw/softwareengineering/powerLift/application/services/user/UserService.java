@@ -1,6 +1,6 @@
 package de.dhbw.softwareengineering.powerLift.application.services.user;
 
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.UserRepository;
 
 import java.util.List;

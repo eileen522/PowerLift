@@ -2,7 +2,7 @@ package de.dhbw.softwareengineering.powerLift.plugins.rest;
 
 import de.dhbw.softwareengineering.powerLift.application.services.user.UserAlreadyExistsException;
 import de.dhbw.softwareengineering.powerLift.application.services.user.UserService;
-import de.dhbw.softwareengineering.powerLift.domain.entities.user.User;
+import de.dhbw.softwareengineering.powerLift.domain.entities.User;
 
 import java.util.List;
 import java.util.Optional;
