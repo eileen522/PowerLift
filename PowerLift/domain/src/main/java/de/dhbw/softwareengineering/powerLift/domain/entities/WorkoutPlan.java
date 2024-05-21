@@ -1,10 +1,15 @@
 package de.dhbw.softwareengineering.powerLift.domain.entities;
 
+import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.lang3.Validate;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -21,14 +26,14 @@ public class WorkoutPlan {
     @Column
     private String description;
 	
-    //@OneToMany(mappedBy = "workoutPlan")
-    //private List<Workout> workouts;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Workout> workouts;
     
-    public WorkoutPlan(String name, String description /*, List<Workout> workouts*/) {
+    public WorkoutPlan(String name, String description, List<Workout> workouts) {
     	this.id = UUID.randomUUID();
     	this.name = name;
     	this.description = description;
-    	//this.workouts = workouts;
+    	this.workouts = workouts;
     }
     
     protected WorkoutPlan() {
@@ -46,8 +51,26 @@ public class WorkoutPlan {
     	return description;
     }
     
-    /*public List<Workout> getWorkouts() {
+    public List<Workout> getWorkouts() {
         return workouts;
-    }*/
-
+    }
+    
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    
+    public void setName(String name) {
+        Validate.notBlank(name);
+        this.name = name;
+    }
+    
+    public void setDescription(String description) {
+        Validate.notBlank(description);
+        this.description = description;
+    }
+    
+    public void setWorkouts(List<Workout> workouts) {
+        this.workouts = workouts;
+    }
+    
 }
