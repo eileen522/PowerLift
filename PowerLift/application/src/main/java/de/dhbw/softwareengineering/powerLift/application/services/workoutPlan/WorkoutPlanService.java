@@ -69,8 +69,8 @@ public class WorkoutPlanService {
         } else {
             throw new IllegalArgumentException("Workout not found");
         }
-		
 	}
+	
 	public void deleteWorkoutPlan(UUID id) {
 		workoutPlanRepository.deleteWorkoutPlan(id);
     	eventPublisher.publishEvent(new WorkoutPlanDeletedEvent(this, id));
