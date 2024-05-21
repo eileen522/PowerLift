@@ -2,6 +2,8 @@ package de.dhbw.softwareengineering.powerLift.domain.entities;
 
 import java.util.UUID;
 
+import org.apache.commons.lang3.Validate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -47,5 +49,20 @@ public class Exercise {
     
     public String getCategory() {
         return category;
+    }
+
+	public void setName(String name) {
+        Validate.notBlank(name);
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        Validate.notBlank(description);
+        this.description = description;
+    }
+
+    public void setCategory(String category) {
+        Validate.notBlank(category);
+        this.category = category;
     }
 }
