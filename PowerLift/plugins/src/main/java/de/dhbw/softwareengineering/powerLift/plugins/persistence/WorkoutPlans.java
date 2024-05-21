@@ -37,13 +37,13 @@ public class WorkoutPlans implements WorkoutPlanRepository {
 	}
 
 	@Override
-	public void createWorkoutPlan(WorkoutPlan workoutPlan) {
-		springDataForWorkoutPlans.save(workoutPlan);
+	public WorkoutPlan createWorkoutPlan(WorkoutPlan workoutPlan) {
+		return springDataForWorkoutPlans.save(workoutPlan);
 	}
 
 	@Override
-	public void updateWorkoutPlan(WorkoutPlan workoutPlan) {
-		springDataForWorkoutPlans.save(workoutPlan);
+	public WorkoutPlan updateWorkoutPlan(WorkoutPlan workoutPlan) {
+		return springDataForWorkoutPlans.save(workoutPlan);
 	}
 
 	@Override

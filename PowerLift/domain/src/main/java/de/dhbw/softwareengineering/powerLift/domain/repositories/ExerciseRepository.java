@@ -11,7 +11,7 @@ public interface ExerciseRepository {
 	Optional<Exercise> getExerciseById(UUID id);
     Optional<Exercise> getExerciseByName(String name);
     List<Exercise> getAllExercises();
-    void createExercise(Exercise exercise);
-	void updateExercise(Exercise exercise);
+    Exercise createExercise(Exercise exercise);
+    Exercise updateExercise(Exercise exercise);
     void deleteExercise(UUID id);
 }

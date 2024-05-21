@@ -32,13 +32,13 @@ public class Exercises implements ExerciseRepository {
 	}
 
 	@Override
-	public void createExercise(Exercise exercise) {
-		springDataForExercises.save(exercise);
+	public Exercise createExercise(Exercise exercise) {
+		return springDataForExercises.save(exercise);
 	}
 
 	@Override
-	public void updateExercise(Exercise exercise) {
-		springDataForExercises.save(exercise);
+	public Exercise updateExercise(Exercise exercise) {
+		return springDataForExercises.save(exercise);
 	}
 
 	@Override

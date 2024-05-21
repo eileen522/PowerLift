@@ -12,7 +12,7 @@ public interface UserRepository {
     Optional<User> getUserByEmail(String email);
     Optional<User> getUserByUsername(String username);
     List<User> getAllUsers();
-    void createUser(User user);
-	void updateUser(User user);  
+    User createUser(User user);
+	User updateUser(User user);  
     void deleteUser(UUID id);
 }

@@ -38,13 +38,13 @@ public class Users implements UserRepository {
 	}
 
 	@Override
-	public void createUser(User user) {
-		springDataForUsers.save(user);
+	public User createUser(User user) {
+		return springDataForUsers.save(user);
 	}
 	
 	@Override
-	public void updateUser(User user) {
-		springDataForUsers.save(user);
+	public User updateUser(User user) {
+		return springDataForUsers.save(user);
 	}
 
 	@Override

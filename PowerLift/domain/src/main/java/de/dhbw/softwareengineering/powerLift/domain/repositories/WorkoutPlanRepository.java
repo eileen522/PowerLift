@@ -12,8 +12,8 @@ public interface WorkoutPlanRepository {
 	Optional<WorkoutPlan> getWorkoutPlanByName(String name);
     List<WorkoutPlan> findByUserId(UUID userId);
     List<WorkoutPlan> getAllWorkoutPlans();
-    void createWorkoutPlan(WorkoutPlan workoutPlan);
-    void updateWorkoutPlan(WorkoutPlan workoutPlan);
+    WorkoutPlan createWorkoutPlan(WorkoutPlan workoutPlan);
+    WorkoutPlan updateWorkoutPlan(WorkoutPlan workoutPlan);
     void deleteWorkoutPlan(UUID id);
 
 }

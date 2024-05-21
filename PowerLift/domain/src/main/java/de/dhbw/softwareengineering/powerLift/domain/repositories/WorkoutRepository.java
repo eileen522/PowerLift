@@ -12,7 +12,7 @@ public interface WorkoutRepository {
 	Optional<Workout> getWorkoutByName(String name);
     List<Workout> findByUserId(UUID userId);
     List<Workout> getAllWorkouts();
-    void createWorkout(Workout workout);
-    void updateWorkout(Workout workout);
+    Workout createWorkout(Workout workout);
+    Workout updateWorkout(Workout workout);
     void deleteWorkout(UUID id);
 }

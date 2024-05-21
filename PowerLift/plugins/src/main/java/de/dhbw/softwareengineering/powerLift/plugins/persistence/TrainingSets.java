@@ -27,13 +27,13 @@ public class TrainingSets implements TrainingSetRepository {
 	}
 
 	@Override
-	public void createTrainingSet(TrainingSet trainingSet) {
-		springDataForTrainingSets.save(trainingSet);
+	public TrainingSet createTrainingSet(TrainingSet trainingSet) {
+		return springDataForTrainingSets.save(trainingSet);
 	}
 
 	@Override
-	public void updateTrainingSet(TrainingSet trainingSet) {
-		springDataForTrainingSets.save(trainingSet);
+	public TrainingSet updateTrainingSet(TrainingSet trainingSet) {
+		return springDataForTrainingSets.save(trainingSet);
 	}
 
 	@Override

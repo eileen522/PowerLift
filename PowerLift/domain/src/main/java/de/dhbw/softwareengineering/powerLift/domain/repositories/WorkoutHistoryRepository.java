@@ -13,6 +13,6 @@ public interface WorkoutHistoryRepository {
     Optional<WorkoutHistory> findByDate(LocalDate date);
     List<WorkoutHistory> findByUserId(UUID userId);
     List<WorkoutHistory> getAllWorkoutHistorys();
-    void createWorkoutHistory(WorkoutHistory workoutHistory);
+    WorkoutHistory createWorkoutHistory(WorkoutHistory workoutHistory);
 
 }

@@ -10,8 +10,8 @@ public interface TrainingSetRepository {
 	
 	Optional<TrainingSet> getTrainingSetById(UUID id);
     List<TrainingSet> getAllTrainingSets();
-    void createTrainingSet(TrainingSet trainingSet);
-    void updateTrainingSet(TrainingSet trainingSet);
+    TrainingSet createTrainingSet(TrainingSet trainingSet);
+    TrainingSet updateTrainingSet(TrainingSet trainingSet);
     void deleteTrainingSet(UUID id);
     
 }

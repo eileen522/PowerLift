@@ -38,8 +38,8 @@ public class WorkoutHistorys implements WorkoutHistoryRepository {
 	}
 
 	@Override
-	public void createWorkoutHistory(WorkoutHistory workoutHistory) {
-		springDataForWorkoutHistory.save(workoutHistory);
+	public WorkoutHistory createWorkoutHistory(WorkoutHistory workoutHistory) {
+		return springDataForWorkoutHistory.save(workoutHistory);
 	}
 
 }

@@ -39,6 +39,7 @@ public class WorkoutPlan {
     	this.id = UUID.randomUUID();
     	this.name = name;
     	this.description = description;
+    	this.user = user;
     	this.workouts = workouts;
     }
     
