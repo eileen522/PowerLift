@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import de.dhbw.softwareengineering.powerLift.domain.entities.Exercise;
 import de.dhbw.softwareengineering.powerLift.domain.entities.TrainingSet;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.TrainingSetRepository;
+import de.dhbw.softwareengineering.powerLift.domain.values.RPE;
 
 @Service
 public class TrainingSetService {
@@ -38,7 +39,7 @@ public class TrainingSetService {
     	trainingSetRepository.createTrainingSet(newTrainingSet);
     }
     
-    public void updateTrainingSet(UUID id, Exercise exercise, Integer sets, Integer reps, double rpe) {
+    public void updateTrainingSet(UUID id, Exercise exercise, Integer sets, Integer reps, RPE rpe) {
     	 Optional<TrainingSet> existingTrainingSet = trainingSetRepository.getTrainingSetById(id);
          if (existingTrainingSet.isPresent()) {
              TrainingSet updatedTrainingSet = existingTrainingSet.get();

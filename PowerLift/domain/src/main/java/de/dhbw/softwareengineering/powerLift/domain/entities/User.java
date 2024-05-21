@@ -27,16 +27,12 @@ public class User {
     @Column
     private String password;
     
-    public User(String username, String email, String password) {
-        Validate.notBlank(username);
-        Validate.notBlank(email);
-        Validate.isTrue(EmailValidator.getInstance().isValidEmail(email));
-        Validate.notBlank(password);
-    	
-    	this.id = UUID.randomUUID();
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public User(Builder builder) {
+  
+        this.id = builder.id;
+        this.username = builder.username;
+        this.email = builder.email;
+        this.password = builder.password;
     }
     
     protected User() {
@@ -72,5 +68,39 @@ public class User {
     public void setPassword(String password) {
         Validate.notBlank(password);
         this.password = password;
+    }
+    
+    public static class Builder {
+        private UUID id;
+        private String username;
+        private String email;
+        private String password;
+
+        public Builder() {
+            this.id = UUID.randomUUID();
+        }
+
+        public Builder withUsername(String username) {
+            Validate.notBlank(username);
+            this.username = username;
+            return this;
+        }
+
+        public Builder withEmail(String email) {
+            Validate.notBlank(email);
+            Validate.isTrue(EmailValidator.getInstance().isValidEmail(email));
+            this.email = email;
+            return this;
+        }
+
+        public Builder withPassword(String password) {
+            Validate.notBlank(password);
+            this.password = password;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }

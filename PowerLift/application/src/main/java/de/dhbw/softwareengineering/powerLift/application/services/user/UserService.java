@@ -40,8 +40,7 @@ public class UserService {
     }
 
     public void create(User user) throws UserAlreadyExistsException {
-        
-    	if (userRepository.getUserByUsername(user.getUsername()).isPresent()) {
+        if (userRepository.getUserByUsername(user.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException("Username already exists");
         }
 
@@ -49,7 +48,11 @@ public class UserService {
             throw new UserAlreadyExistsException("Email already exists");
         }
 
-        User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword());
+        User newUser = new User.Builder()
+                .withUsername(user.getUsername())
+                .withEmail(user.getEmail())
+                .withPassword(user.getPassword())
+                .build();
 
         userRepository.createUser(newUser);
     }
@@ -67,11 +70,13 @@ public class UserService {
                 throw new UserAlreadyExistsException("Email already exists");
             }
 
-            user.setUsername(newUsername);
-            user.setEmail(newEmail);
-            user.setPassword(newPassword);
+            User updatedUser = new User.Builder()
+                    .withUsername(newUsername)
+                    .withEmail(newEmail)
+                    .withPassword(newPassword)
+                    .build();
 
-            userRepository.updateUser(user);
+            userRepository.updateUser(updatedUser);
         } else {
             throw new IllegalArgumentException("User not found");
         }

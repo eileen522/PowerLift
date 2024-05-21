@@ -1,7 +1,10 @@
 package de.dhbw.softwareengineering.powerLift.domain.entities;
 
 import java.util.UUID;
+
+import de.dhbw.softwareengineering.powerLift.domain.values.RPE;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -26,10 +29,10 @@ public class TrainingSet {
     @Column
     private Integer reps;
 
-    @Column
-    private double rpe;
+    @Embedded
+    private RPE rpe;
 
-    public TrainingSet(Exercise exercise, Integer sets, Integer reps, double rpe) {
+    public TrainingSet(Exercise exercise, Integer sets, Integer reps, RPE rpe) {
         this.id = UUID.randomUUID();
         this.exercise = exercise;
         this.sets = sets;
@@ -56,9 +59,7 @@ public class TrainingSet {
         return reps;
     }
 
-    public double getRpe() {
-        return rpe;
-    }
+    
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
@@ -72,7 +73,13 @@ public class TrainingSet {
         this.reps = reps;
     }
 
-    public void setRpe(double rpe) {
-        this.rpe = rpe;
-    }
+	public RPE getRpe() {
+		return rpe;
+	}
+
+	public void setRpe(RPE rpe) {
+		this.rpe = rpe;
+	}
+
+    
 }

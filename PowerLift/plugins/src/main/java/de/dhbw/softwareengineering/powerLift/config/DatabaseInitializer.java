@@ -18,7 +18,7 @@ import de.dhbw.softwareengineering.powerLift.domain.repositories.UserRepository;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.WorkoutHistoryRepository;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.WorkoutPlanRepository;
 import de.dhbw.softwareengineering.powerLift.domain.repositories.WorkoutRepository;
-
+import de.dhbw.softwareengineering.powerLift.domain.values.RPE;
 import jakarta.annotation.PostConstruct;
 
 @Component
@@ -46,9 +46,23 @@ public class DatabaseInitializer {
     public void init() {
         
         // Create users
-        User user1 = new User("johnDoe", "john@example.com", "password");
-        User user2 = new User("janeDoe", "jane@example.com", "password1234");
-        User user3 = new User("eileen", "eileen@dhbw.com", "password5678");
+    	User user1 = new User.Builder()
+    	        .withUsername("johnDoe")
+    	        .withEmail("john@example.com")
+    	        .withPassword("password")
+    	        .build();
+
+    	User user2 = new User.Builder()
+    	        .withUsername("janeDoe")
+    	        .withEmail("jane@example.com")
+    	        .withPassword("password1234")
+    	        .build();
+
+    	User user3 = new User.Builder()
+    	        .withUsername("eileen")
+    	        .withEmail("eileen@dhbw.com")
+    	        .withPassword("password5678")
+    	        .build();
         
         user1 = userRepository.createUser(user1);
         user2 = userRepository.createUser(user2);
@@ -73,17 +87,17 @@ public class DatabaseInitializer {
         exerciseRepository.createExercise(new Exercise("Lat Pulldown", "A back exercise", "Back"));
         
         // Create training sets
-        TrainingSet squatSet1 = new TrainingSet(squat, 5, 5, 8.0);
-        TrainingSet benchPressSet1 = new TrainingSet(bench, 3, 8, 7.5);
-        TrainingSet deadliftSet1 = new TrainingSet(deadlift, 4, 2, 9.0);
-        TrainingSet pullUpSet1 = new TrainingSet(pullUp, 4, 10, 7.0);
-        TrainingSet overheadPressSet1 = new TrainingSet(overheadPress, 3, 6, 8.5);
+        TrainingSet squatSet1 = new TrainingSet(squat, 5, 5, new RPE( 8.0));
+        TrainingSet benchPressSet1 = new TrainingSet(bench, 3, 8, new RPE( 7.5));
+        TrainingSet deadliftSet1 = new TrainingSet(deadlift, 4, 2, new RPE( 9.0));
+        TrainingSet pullUpSet1 = new TrainingSet(pullUp, 4, 10, new RPE( 7.0));
+        TrainingSet overheadPressSet1 = new TrainingSet(overheadPress, 3, 6, new RPE( 8.5));
         
-        TrainingSet squatSet2 = new TrainingSet(squat, 4, 6, 7.5);
-        TrainingSet benchPressSet2 = new TrainingSet(bench, 5, 5, 8.0);
-        TrainingSet deadliftSet2 = new TrainingSet(deadlift, 3, 3, 9.5);
-        TrainingSet pullUpSet2 = new TrainingSet(pullUp, 3, 8, 7.5);
-        TrainingSet overheadPressSet2 = new TrainingSet(overheadPress, 4, 4, 8.0);
+        TrainingSet squatSet2 = new TrainingSet(squat, 4, 6, new RPE( 7.5));
+        TrainingSet benchPressSet2 = new TrainingSet(bench, 5, 5, new RPE( 8.0));
+        TrainingSet deadliftSet2 = new TrainingSet(deadlift, 3, 3, new RPE( 9.5));
+        TrainingSet pullUpSet2 = new TrainingSet(pullUp, 3, 8, new RPE( 7.5));
+        TrainingSet overheadPressSet2 = new TrainingSet(overheadPress, 4, 4, new RPE( 8.0));
         
         trainingSetRepository.createTrainingSet(squatSet1);
         trainingSetRepository.createTrainingSet(benchPressSet1);
